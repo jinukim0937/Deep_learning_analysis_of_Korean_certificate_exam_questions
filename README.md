@@ -16,14 +16,14 @@
 
 ## 코드
 
-# Model1: 선지 도메인 분류
-## 참고사이트
+### Model1: 선지 도메인 분류
+#### 참고사이트
 
 https://gist.github.com/Lucia-KIM/165b8f13c007f83b4762ab436ea95610
 
 https://byumm315.tistory.com/entry/%ED%95%9C%EA%B5%AD%EC%96%B4-%EB%89%B4%EC%8A%A4-%ED%86%A0%ED%94%BD-%EB%B6%84%EB%A5%98-1-I-am-yumida
 
-## 필요한 패키지 설치
+#### 필요한 패키지 설치
 
 
 ```python
@@ -45,7 +45,7 @@ except:
     [K     |████████████████████████████████| 465 kB 81.0 MB/s 
     [?25h
 
-## 패키지 불러오기
+#### 패키지 불러오기
 
 
 ```python
@@ -63,7 +63,7 @@ import matplotlib.pyplot as plt
 from imblearn.over_sampling import SMOTE
 ```
 
-## 데이터 불러오기
+#### 데이터 불러오기
 
 
 ```python
@@ -92,7 +92,7 @@ data = pd.concat([data1,data2,data3,data4], axis=0)
 data = data.reset_index(drop=True,inplace=False)
 ```
 
-## 데이터 전처리
+#### 데이터 전처리
 
 
 ```python
@@ -308,7 +308,7 @@ data
 
 
 
-## train & test 데이터로 나누기
+#### train & test 데이터로 나누기
 
 
 ```python
@@ -334,7 +334,7 @@ test_data = pd.DataFrame({'document':x_test,
                              'label':y_test})
 ```
 
-## 워드 임베딩
+#### 워드 임베딩
 
 
 
@@ -440,7 +440,7 @@ plt.show()
 
 
 
-![png](output_34_2.png)
+![image_01](./_image/image_01.png)
     
 
 
@@ -460,11 +460,11 @@ plt.show()
 
 
 ​    
-![png](output_36_0.png)
+![image_01](./_image/image_02.png)
 ​    
 
 
-## 데이터 레이블 균형 맞추기 & 데이터 증강
+#### 데이터 레이블 균형 맞추기 & 데이터 증강
 
 
 ```python
@@ -514,7 +514,7 @@ y 데이터 LSTM 입력을 위한 더미화
 y_train_over_fin = pd.get_dummies(y_train_over).values
 ```
 
-## LSTM 모델
+#### LSTM 모델
 
 
 ```python
@@ -611,8 +611,8 @@ print("\n 테스트 정확도: %.4f" %(model1.evaluate(X_test,y_test_fin)[1]))
      테스트 정확도: 0.6944
 
 
-# Model2: 문제 도메인 분류
-## 참고사이트
+### Model2: 문제 도메인 분류
+#### 참고사이트
 
 https://hoit1302.tistory.com/159
 
@@ -622,7 +622,7 @@ https://github.com/SKTBrain/KoBERT/tree/master/kobert_hf
 
 https://doheon.github.io/%EC%BD%94%EB%93%9C%EA%B5%AC%ED%98%84/nlp/ci-kobert-post/
 
-## 필요한 패키지 설치
+#### 필요한 패키지 설치
 
 
 ```python
@@ -649,7 +649,7 @@ https://doheon.github.io/%EC%BD%94%EB%93%9C%EA%B5%AC%ED%98%84/nlp/ci-kobert-post
 !pip install 'git+https://github.com/SKTBrain/KoBERT.git#egg=kobert_tokenizer&subdirectory=kobert_hf'
 ```
 
-## 패키지 불러오기
+#### 패키지 불러오기
 
 
 ```python
@@ -678,7 +678,7 @@ from transformers import BertModel
 device = torch.device("cpu")
 ```
 
-## 데이터 불러오기
+#### 데이터 불러오기
 
 
 ```python
@@ -690,7 +690,7 @@ data_raw = pd.read_excel("Dataset.xlsx", engine = "openpyxl")
 data = data_raw[['Testname','MainText']]
 ```
 
-## 데이터 전처리
+#### 데이터 전처리
 
 
 ```python
@@ -738,7 +738,7 @@ for i in range(len(data)):
     data.iloc[i]['MainText'] = cleanText(data.iloc[i]['MainText'])
 ```
 
-## train & test 데이터로 나누기
+#### train & test 데이터로 나누기
 
 
 ```python
@@ -758,7 +758,7 @@ from sklearn.model_selection import train_test_split
 dataset_train, dataset_test = train_test_split(data_list, test_size=0.2, shuffle=True, random_state=34)
 ```
 
-## 워드 임베딩
+#### 워드 임베딩
 
 
 ```python
@@ -816,7 +816,7 @@ train_dataloader = torch.utils.data.DataLoader(data_train, batch_size=batch_size
 test_dataloader = torch.utils.data.DataLoader(data_test, batch_size=batch_size, num_workers=5)
 ```
 
-## BERT 분류 모델
+#### BERT 분류 모델
 
 
 ```python
@@ -1391,8 +1391,8 @@ for e in range(num_epochs):
     epoch 30 test acc 0.9269886363636364
 
 
-# Model3: 유사 문제 추출
-## 참고사이트 
+### Model3: 유사 문제 추출
+#### 참고사이트 
 https://github.com/Huffon/klue-transformers-tutorial/blob/master/sentence_transformers.ipynb
 
 https://github.com/Huffon/klue-transformers-tutorial
@@ -1401,7 +1401,7 @@ https://github.com/jhgan00/ko-sentence-transformers
 
 https://klue-benchmark.com/
 
-## 필요한 패키지 설치
+#### 필요한 패키지 설치
 
 필요시 런타임 다시 시작
 
@@ -1490,7 +1490,7 @@ https://klue-benchmark.com/
     Successfully installed datasets-2.7.1 huggingface-hub-0.11.1 multiprocess-0.70.14 responses-0.18.0 sentence-transformers-2.2.2 sentencepiece-0.1.97 tokenizers-0.13.2 transformers-4.25.1 urllib3-1.25.11 xxhash-3.1.0
 
 
-## 패키지 불러오기
+#### 패키지 불러오기
 
 
 ```python
@@ -1522,7 +1522,7 @@ logging.basicConfig(
 )
 ```
 
-## 사전학습 모델과 임베딩 모델 불러오기
+#### 사전학습 모델과 임베딩 모델 불러오기
 
 
 ```python
@@ -1580,7 +1580,7 @@ pooler = models.Pooling(
 model = SentenceTransformer(modules=[embedding_model, pooler])
 ```
 
-## 데이터셋 불러오기
+#### 데이터셋 불러오기
 
 
 ```python
@@ -1628,7 +1628,7 @@ for example in testsets["test"]:
     test_samples.append(inp_example)
 ```
 
-## 모델 학습
+#### 모델 학습
 
 
 ```python
@@ -1692,7 +1692,7 @@ test_evaluator(model)
 
 
 
-## 유사 문제 추출
+#### 유사 문제 추출
 
 
 ```python
